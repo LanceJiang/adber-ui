@@ -1,5 +1,5 @@
 <script type="text/jsx">
-import { t } from 'adber-ui/src/locale'
+import { t } from '@adber/adber-ui/src/locale'
 export default {
   name: 'AdInputNumber',
   model: {

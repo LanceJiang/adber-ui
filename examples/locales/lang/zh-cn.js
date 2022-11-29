@@ -1,6 +1,6 @@
 export default {
   // 常用的有集成到
-  // import CNAdbLocale from 'adber-ui/lib(src)/locale/lang/zh-cn.js'
+  // import CNAdbLocale from '@adber/adber-ui/lib(src)/locale/lang/zh-cn.js'
   common: {
     todo: 'common 中文 todo'
   },

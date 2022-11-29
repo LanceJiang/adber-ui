@@ -1,7 +1,7 @@
 <script lang="jsx">
-import { t } from 'adber-ui/src/locale'
-import DraggableNest from 'adber-ui/packages/DraggableNest'
-import NoData from 'adber-ui/packages/NoData'
+import { t } from '@adber/adber-ui/src/locale'
+import DraggableNest from '@adber/adber-ui/packages/DraggableNest'
+import NoData from '@adber/adber-ui/packages/NoData'
 
 const render = function (h) {
   const { title, tips, visible, options, selectedMax, checkedList, checkedOptions, submitLoading } = this

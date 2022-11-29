@@ -1,6 +1,6 @@
 export default {
   // 常用的有集成到
-  // import EnAdbLocale from 'adber-ui/lib(src)/locale/lang/en.js'
+  // import EnAdbLocale from '@adber/adber-ui/lib(src)/locale/lang/en.js'
   common: {
     todo: 'common todo'
   },

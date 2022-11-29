@@ -1,6 +1,6 @@
 <script lang="jsx">
-import { t } from 'adber-ui/src/locale'
-import NoData from 'adber-ui/packages/NoData'
+import { t } from '@adber/adber-ui/src/locale'
+import NoData from '@adber/adber-ui/packages/NoData'
 
 const render = function(h) {
   const { visible, selectOption, modelValue, value, comp_Options } = this

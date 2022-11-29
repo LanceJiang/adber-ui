@@ -3,6 +3,8 @@
     Home
     <div class="common_title">AdPopover 使用</div>
     <div class="content">
+      <el-button plain disabled> addddddddd </el-button>
+      <el-button plain> addddddddd </el-button>
       <AdPopover trigger="click" :popperClass="`ad-popover--list ${'popperClass'}`" placement="right">
         <div class="labelWrap" style="width: 250px" slot="reference">
           可售：666

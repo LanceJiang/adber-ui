@@ -19,7 +19,8 @@ module.exports = {
   chainWebpack: config => {
     // vue默认@指向src目录，这里要修正为examples，另外新增一个~指向packages
     config.resolve.alias
-      .set('adber-ui', path.resolve(''))
+      .set('@adber/adber-ui', path.resolve(''))
+      // .set('adber-ui-demo', path.resolve('')) // todo delete
       .set('@', path.resolve('examples'))
 
     // packages和examples目录需要加入编译

@@ -1,14 +1,14 @@
 <script lang="jsx">
-import { t } from 'adber-ui/src/locale'
+import { t } from '@adber/adber-ui/src/locale'
 // import InputNumberRange from './customizeFormItem/InputNumberRange'
-import Popover from 'adber-ui/packages/Popover'
-import CustomRender from 'adber-ui/packages/CustomRender'
-import InputNumber from 'adber-ui/packages/InputNumber'
-import Icon from 'adber-ui/packages/Icon'
-import AdSelect from 'adber-ui/packages/Select'
+import Popover from '@adber/adber-ui/packages/Popover'
+import CustomRender from '@adber/adber-ui/packages/CustomRender'
+import InputNumber from '@adber/adber-ui/packages/InputNumber'
+import Icon from '@adber/adber-ui/packages/Icon'
+import AdSelect from '@adber/adber-ui/packages/Select'
 import SearchFilterDrawer from './SearchFilterDrawer'
 import SelectedItemsSortDialog from './SelectedItemsSortDialog'
-import { renderSelectOption } from 'adber-ui/src/utils/slotsUtils'
+import { renderSelectOption } from '@adber/adber-ui/src/utils/slotsUtils'
 
 const render = function(h) {
   // const _this = this

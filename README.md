@@ -3,14 +3,14 @@
 
 ### Install
 ```
-npm install adber-ui -S
+npm install @adber/adber-ui -S
 ```
 
 ### Usage
 ```
 import Vue from "vue"
-import AdberUI from 'adber-ui'
-import 'adber-ui/style/index.scss'
+import AdberUI from '@adber/adber-ui'
+import '@adber/adber-ui/style/index.scss'
 Vue.use(AdberUI)
 ```
 在项目中使用

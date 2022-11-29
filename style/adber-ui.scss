@@ -33,9 +33,9 @@
   border: none;
   color: $ad-color_3;
   background: transparent;
-
   &:hover {
     background: $ad-border-color_3;
+    color: $ad-color_3;
   }
 }
 

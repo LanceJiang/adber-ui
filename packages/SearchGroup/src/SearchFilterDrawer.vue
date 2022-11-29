@@ -40,9 +40,9 @@
 </template>
 
 <script lang="jsx">
-// import { t } from 'adber-ui/src/locale'
-// import Icon from 'adber-ui/packages/Icon'
-import Locale from 'adber-ui/src/mixins/locale'
+// import { t } from '@adber/adber-ui/src/locale'
+// import Icon from '@adber/adber-ui/packages/Icon'
+import Locale from '@adber/adber-ui/src/mixins/locale'
 // import SelectedItemsSortDialog from './SelectedItemsSortDialog'
 
 export default {

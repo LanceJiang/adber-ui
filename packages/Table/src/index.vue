@@ -1,9 +1,9 @@
 <script lang="jsx">
-import NoData from 'adber-ui/packages/NoData'
-import Icon from 'adber-ui/packages/Icon'
-import { t } from 'adber-ui/src/locale'
+import NoData from '@adber/adber-ui/packages/NoData'
+import Icon from '@adber/adber-ui/packages/Icon'
+import { t } from '@adber/adber-ui/src/locale'
 /*, debounce */
-import { getDeepValue } from 'adber-ui/src/utils'
+import { getDeepValue } from '@adber/adber-ui/src/utils'
 
 import TableColumnsPopover from './TableColumnsPopover'
 

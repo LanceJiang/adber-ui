@@ -83,11 +83,14 @@
       <!-- 操作 -->
       <template #action="{ row }">
         <el-tooltip placement="top" :content="$t('outboundOrder.btn.view')">
-          <el-button class="ad-icon-button" @click="handleView(row)">
+          <el-button class="ad-icon-button">
             <AdIcon icon-class="ad-view"></AdIcon>
           </el-button>
         </el-tooltip>
         <el-button class="ad-icon-button">
+          <AdIcon icon-class="ad-hide_column"></AdIcon>
+        </el-button>
+        <el-button class="ad-icon-button" disabled>
           <AdIcon icon-class="ad-hide_column"></AdIcon>
         </el-button>
       </template>

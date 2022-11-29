@@ -1,5 +1,5 @@
 <script>
-import FormConfig from 'adber-ui/packages/FormConfig'
+import FormConfig from '@adber/adber-ui/packages/FormConfig'
 const render = function(h) {
   const { title, visible, width, changeVisible, formOptions, formData } = this
   const on = {

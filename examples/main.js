@@ -4,17 +4,17 @@ import router from './router'
 import store from './store'
 import i18n from './locales'
 
-import { $log } from 'adber-ui/src/utils/index.js'
+import { $log } from '@adber/adber-ui/src/utils/index.js'
 
 // 导入组件库
 import AdberUI from './../packages'
 
 // 正式
-// import AdberUI from 'adber-ui/lib/adber-ui.umd'
-// import AdberUI from 'adber-ui'
+// import AdberUI from '@adber/adber-ui/lib/adber-ui.umd'
+// import AdberUI from '@adber/adber-ui'
 
 // 默认 elemen-ui 样式
-import 'adber-ui/style/index.scss'
+import '@adber/adber-ui/style/index.scss'
 // import '@/assets/css/project_normal.scss' // 自定义相关项目配置 模拟
 
 import ElementUI from 'element-ui/lib/element-ui.common.js'

@@ -1,3 +1,4 @@
+// import { prefix } from '@adber/adber-ui/packages/config'
 import packageJson from '../package.json'
 // import Test from './test'
 import Table from './Table'
@@ -49,7 +50,7 @@ const components = [
   if (!iconDom) {
     /** update 最新 iconfont(.css && .js) */
     // const origin_prefix = '//at.alicdn.com/t/c/font_3588867_eb8rgczzz9'
-    const origin_prefix = '//at.alicdn.com/t/c/font_3588867_i301f8qtl4k'
+    const origin_prefix = '//at.alicdn.com/t/c/font_3588867_6cmkzl4lrij'
     const link = d.createElement('link')
     link.rel = 'stylesheet'
     link.type = 'text/css'
