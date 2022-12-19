@@ -10,6 +10,9 @@ import CNElementLocale from 'element-ui/lib/locale/lang/zh-CN'
 import EnAdbLocale from '@adber/adber-ui/src/locale/lang/en'
 import CNAdbLocale from '@adber/adber-ui/src/locale/lang/zh-cn'
 
+// vxe-table 多语言注入
+import EnVxeLocale from 'vxe-table/lib/locale/lang/en-US'
+import CNVxeLocale from 'vxe-table/lib/locale/lang/zh-CN'
 // 正式环境使用
 /* // import AdbLocale from '@adber/adber-ui/lib/locale' // 多语言 问题  lib  AdbLocale.i18n(fn) 修改完之后 未改变
 import EnAdbLocale from '@adber/adber-ui/lib/locale/lang/en'
@@ -27,11 +30,13 @@ const messages = {
   en: {
     ...EnElementLocale,
     ...EnAdbLocale,
+    ...EnVxeLocale,
     ...enLocale
   },
   zh: {
     ...CNElementLocale,
     ...CNAdbLocale,
+    ...CNVxeLocale,
     ...zhLocale
   }
 }

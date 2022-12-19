@@ -1,5 +1,5 @@
 # adber-ui
-基于 vue-cli3 的 UI 组件库
+vue-cli3构建基于elementUI二次封装库 并集成 vxe-table
 
 ### Install
 ```

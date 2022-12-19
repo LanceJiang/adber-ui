@@ -21,8 +21,8 @@ export const tableProps = {
    *     width, // 列宽
    *     minWidth, // 最小列宽
    *     sortable, // 是否允许排列顺序
-   *     formatter: function(row, column){}, // 返回需要展示的数据
-   *     slots: { header: fn || slotName, default: fn || slotName } （slots.default > formatter）
+   *     formatter: function(row, column, cellValue, index){}, // 返回需要展示的数据
+   *     slots: { header: fn || slotName, default: fn({row, column, $index...}, h) || slotName }（slots.default > formatter）
    * }]
    */
   columns: {
@@ -127,7 +127,9 @@ const columnSlots = (column, _this) => {
           local_slots[type] = $scopedSlots[slotName] || null
           break
         case 'function': // 非 vue3 无法直接通过全局获取到 createElement 进行强制绑定
-          local_slots[type] = slotName.bind(null, $createElement)
+          // local_slots[type] = slotName.bind(null, $createElement)
+          // 重载 兼容vxeTable slots 传参方式
+          local_slots[type] = (scope) => slotName(scope, $createElement)
           break
         default:
       }
@@ -137,7 +139,7 @@ const columnSlots = (column, _this) => {
   return local_slots
 }
 const render = function (h) {
-  const { computedOptions, list, total, searchParams, checkedOptions, columnsConfig } = this
+  const { computedOptions, list, total, searchParams, checkedOptions, columnsConfig, localColumns } = this
   // const listeners = {
   //   // 事件
   //   onSortChange: this.tableSortChange,
@@ -186,7 +188,7 @@ const render = function (h) {
             on-row-click={this.handleCurrentChange}
             on-selection-change={this.handleSelectionChange}
           >
-            {this.localColumns.map((column, index) => {
+            {localColumns.map((column, index) => {
               const {
                 label,
                 t_label,
@@ -200,8 +202,8 @@ const render = function (h) {
               const label_ = t_label ? t(t_label) : label
               return (
                 <el-table-column
-                  key={index}
                   props={opts}
+                  key={column.prop}
                   label={label_}
                   scopedSlots={adb_slots}
                   align={align ?? computedOptions.align}
@@ -265,7 +267,7 @@ export default {
           updateSort: false, // 列表变更 是否更新 sort 排序的 column
 
           showIndex: false, // 是否展示序号
-          showFilling: true, // 是否默认填充空白
+          // showFilling: true, // 是否默认填充空白
           showPagination: true, // 是否加载table 分页栏
           showTools: true // 是否展示table tools栏目
         },
@@ -287,6 +289,7 @@ export default {
       const _columns = []
       // 序号
       showIndex && _columns.push({
+        prop: 'adTable_index',
         type: 'index',
         label: 'No.',
         showOverflowTooltip: true,
@@ -297,6 +300,7 @@ export default {
       })
       // 多选
       multipleSelect && _columns.push({
+        prop: 'adTable_selection',
         type: 'selection',
         showOverflowTooltip: false,
         resizable: false,
@@ -306,7 +310,7 @@ export default {
       })
       const realColumns = this.realColumns.filter(Boolean)
       // 空白格填充
-      let fillSpaceColumns = [{ minWidth: 0 }]
+      let fillSpaceColumns = [{ minWidth: 0, prop: 'adTable_fillSpace' }]
       if (realColumns.some(v => !v.fixed)) {
         fillSpaceColumns = []
       }
@@ -317,32 +321,49 @@ export default {
   },
   watch: {
     list() {
-      this.$nextTick().then(this.handleDefaults)
+      // this.$nextTick().then(this.handleDefaults)
     },
     localColumns(columns) {
       // console.error('watch  localColumns  doLayout', columns)
       this.$nextTick(() => {
-        ;(getDeepValue(this, ['$refs', 'ELTable', 'doLayout']) || function() {})()
-        // this.$refs.ELTable.doLayout()
+        const ELTable = getDeepValue(this, ['$refs', 'ELTable'])
+        if (ELTable) {
+          // 修复 element-ui 相同prop 的 columns 调换顺序不更新问题
+          const table_states = ELTable.store.states
+          const lastColumns = table_states._columns
+          const newColumns = columns.map(v => lastColumns.find(_v => _v.property === v.prop)).filter(Boolean)
+          table_states._columns = newColumns
+          ELTable.store.updateColumns()
+          ;(ELTable.doLayout || function() {})()
+        }
+        // ELTable.doLayout()
       })
+    },
+    // fix 动态 rowKey 问题
+    'computedOptions.rowKey': {
+      handler(rowKey, lastRowKey) {
+        if (lastRowKey || rowKey) {
+          // console.warn('rowKey 变化 new, old', rowKey, lastRowKey)
+          try {
+            this.$refs.ELTable.store.states.rowKey = 'local_packing_sku2Id'
+          } catch (e) {
+            console.error(e, 'set element table rowKey error')
+          }
+        }
+      }
     }
-    // localColumns: debounce(function (columns) {
-    //   console.error('watch  localColumns  doLayout', columns)
-    //   this.$nextTick(() => {
-    //     this.$refs.ELTable.doLayout()
-    //   })
-    // }, 30)
   },
   methods: {
-    handleDefaults() {
+    /* handleDefaults() {
       // 更新 列表 sort
       const sortParams = this.searchParams.sortParams || {}
       if (this.computedOptions.updateSort && sortParams.prop) {
         this.tableUpdateSort(sortParams)
       }
-    },
+    }, */
     // 排序
     tableSortChange({ column, prop, order }) {
+      // console.error(arguments, 'tableSortChange.... descending:降序, ascending: 升序, null')
       // console.error(column, prop, order, 'column, prop, order tableSortChange', ...arguments)
       const sortParams = {
         prop,
@@ -354,7 +375,7 @@ export default {
         ...this.searchParams,
         sortParams
       })
-      // this.$emit('sort-change', searchParam)
+      this.$emit('sortChange', sortParams)
     },
     handleCurrentChange(row) {
       // console.warn(row, 'handleCurrentChange row')

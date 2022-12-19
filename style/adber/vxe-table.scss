@@ -1,0 +1,274 @@
+@import './vxe-theme';
+
+@import "../variables.scss";
+@import "../mixins.scss";
+
+// vxe-table 样式
+.#{$prefix}vxe-table-warp {
+  position: relative;
+  //z-index: 0; // (drawer弹出问题 z-index 有影响)
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  min-height: 0;
+  background: #fff;
+  .tableLoading {
+    position: absolute;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.05);
+  }
+  .tableBody {
+    flex: 1;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    .toolBarWrap { // .vxe-toolbar 同级
+      //padding-top: 12px;
+      margin-bottom: 16px;
+      height: auto;
+      align-items: flex-start;
+      .vxe-buttons--wrapper {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      /*.vxe-tools--wrapper {
+        align-self: flex-start;
+      }*/
+      .toolRight {
+        // 兼容当搜索组件放置在 toolLeft 的时候
+        display: flex;
+        align-items: center;
+        // 仅带icon 的button 按钮样式
+        .icon-button {
+          @extend %icon-button;
+        }
+        .el-button {
+          margin-left: 12px;
+        }
+      }
+    }
+    .vxeTableParentEl {
+      flex: 1;
+      overflow-y: hidden;
+    }
+    .vxeTable { // 与  vxe-table 同级
+      .vxe-header--column {
+        &:hover .vxe-resizable.is--line{
+          visibility: visible;
+        }
+        /*.vxe-resizable.is--line {
+          transition: .2s all;
+          visibility: hidden;
+        }*/
+        .vxe-resizable.is--line:before {
+          //width: 2px;
+          //height: 16px;
+          //background: #bbb;
+          width: 1px;
+          height: 100%;
+          background: $ad-border-color_3;
+        }
+      }
+      //.vxe-loading.is--visible {
+      //  display: none;
+      //}
+      .vxe-cell {
+        padding: 0 8px;
+        width: unset !important;
+        min-height: 22px;
+      }
+      .vxe-cell--sort {
+        width: 18px;
+      }
+      // 关闭默认帮助 icon
+      //.vxe-cell-help-icon {
+      //  display: none;
+      //}
+      .slot_title-wrap {
+        display: flex;
+        //display: inline-flex;
+        align-items: center;
+        .label {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+        .ad-iconfont {
+          margin-left: .2em;
+          //margin-left: 6px;
+          font-size: 14px;
+          cursor: pointer;
+          color: #888;
+          font-weight: normal;
+        }
+      }
+      td {
+        vertical-align: top;
+        padding: 6px 0;
+        line-height: 16px;
+        //&.col--checkbox,
+        //&.col--tree-node {
+        //  vertical-align: middle;
+        //}
+      }
+      .vxe-footer--row {
+        td {
+          line-height: 26px;
+          background-color: #fbfbfb;
+          color: rgba(0,0,0,.9);
+          font-weight: bold;
+        }
+      }
+      //.vxe-table--border-line {
+      //  border-left: 0;
+      //  border-right: 0;
+      //}
+      .vxe-table--header-wrapper .vxe-table--header .vxe-header--row th {
+        //background-color: #f6f6f6;
+        background-color: #F6FAFF;
+        height: 40px;
+        color: $ad-color_1;
+        font-weight: normal;
+        //vxe-header--column
+        .vxe-cell {
+          height: 100%;
+        }
+        &.col--checkbox {
+          border-right: 1px solid $ad-border-color_3;
+        }
+      }
+      // hover
+      .vxe-body--row.row--hover {
+        background-color: $ad-hover-color_1;
+        //background-color: rgba(0, 123, 252, 0.1);
+      }
+      // 选中
+      .vxe-body--row.row--current {
+        //background-color: rgba(0, 123, 252, 0.16);
+        background-color: $ad-hover-color_2;
+      }
+
+      .sub_row_bgc{
+        background: #fafafa;
+      }
+    }
+  }
+  /*.vxe-pager--wrapper {
+    display: flex;
+    align-items: center;
+    .vxe-pager--left-wrapper {
+      flex: 1;
+      text-align: left;
+    }
+  }*/
+  .tableFooterWrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    //padding: 16px 0;
+    padding: 12px 0;
+    .footerLeft {
+      .selectedWrap {
+        //display: inline-flex;
+        //align-items: flex-end;
+        padding-right: 12px;
+        line-height: 30px;
+        //color: rgba(0, 0, 0, .45);
+        color: $ad-color_3;
+        span {
+          color: $ad-color-primary;
+          font-weight: 600;
+          padding: 0 3px;
+        }
+      }
+    }
+    .el-pagination {
+      //display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  // 针对 有底部统计 的 left 修复
+  .vxe-table--render-default .vxe-table--fixed-left-wrapper .vxe-table--body-wrapper {
+    width: unset !important;
+  }
+
+  // 提示样式统一
+  .vxe-table--tooltip-wrapper.theme--dark {
+    background: rgba(0, 0, 0, 0.75);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 15%);
+    border-radius: 2px;
+    padding: 6px 8px;
+    &.placement--top .vxe-table--tooltip-arrow{
+      border-width: 4px;
+      bottom: -8px;
+      border-top-color: rgba(0, 0, 0, 0.75);
+      &:before {
+        //border-top-color: rgba(0, 0, 0, 0.75);
+        border-width: 0;
+      }
+    }
+    &.is--visible {
+      z-index: 6666 !important;
+    }
+  }
+  .vxe-table--render-default .vxe-cell--checkbox .vxe-checkbox--checked-icon:after,
+  .vxe-table--filter-option .vxe-checkbox--checked-icon:after,
+  .vxe-export--panel-column-option .vxe-checkbox--checked-icon:after,
+  .vxe-custom--option .vxe-checkbox--checked-icon:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 22%;
+    border: 1px solid #fff;
+    border-left: 0;
+    border-top: 0;
+    width: 5px;
+    height: 9px;
+    transform: rotate(45deg) scale(1) translate(-50%, -50%);
+  }
+
+  .vxe-table--render-default {
+    /*.vxe-cell--checkbox .vxe-checkbox--icon {
+      top: 0 !important;
+    }*/
+    .vxe-tree--btn-wrapper {
+      top: 6px !important;
+    }
+    .vxe-tree--node-btn {
+      // 兼容 treeConfig  > ( > ) iconfont icon-minus_square
+      //transform: translateY(-2px);
+      &:hover {
+        color: $ad-color-primary;
+      }
+    }
+    .vxe-table--empty-placeholder {
+      z-index: 5 !important;
+    }
+  }
+  .vxe-tree--node-btn.iconfont,
+  .vxe-table--expand-btn.iconfont {
+    font-size: 16px;
+  }
+  .local_noDataWrap_middle {
+    transform: translateY(-50%);
+  }
+
+  .vxe-table--body {
+    .vxe-cell {
+      // 高亮文字样式 （类 超链接）
+      /*.el-dropdown-link  {
+        cursor: pointer;
+        color: $ad-color-primary;
+      }*/
+    }
+  }
+}

@@ -1,0 +1,20 @@
+@import "../variables.scss";
+@import 'vxe-table/styles/variable.scss';
+
+// 修改样式变量
+$vxe-font-size: 14px;
+$vxe-font-size-medium: 14px;
+$vxe-font-size-small: 14px;
+$vxe-font-size-mini: 14px;
+//$vxe-font-color: #666;
+$vxe-font-color: $ad-color_2;
+$vxe-primary-color: $ad-color-primary;
+$vxe-table-font-color: $vxe-font-color;
+//$vxe-table-border-color: #e8eaec;
+$vxe-table-border-color: $ad-border-color_3;
+$vxe-table-border-radius: 4px;
+$vxe-checkbox-border-width: 1px;
+$vxe-table-resizable-drag-line-color: $ad-border-color_3;
+// ...
+
+@import 'vxe-table/styles/modules.scss';

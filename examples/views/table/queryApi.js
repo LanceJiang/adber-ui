@@ -1,4 +1,4 @@
-const orderTotal = 888
+const orderTotal = 876543
 // 列表数据
 export const getOrders = (input) => {
   // 模拟参数
@@ -12,7 +12,7 @@ export const getOrders = (input) => {
       // 模拟数据
       const res = {
         data: Array.from({ length }).map((_, i) => {
-          return { value: `testVal_${i}` }
+          return { priceValue: 10000 + i, currency: 'USD or CNY', orderNo: `orderNo_${i}`, local_user: `local_user_${i}`, test_2: `test_2_${i}` }
         })
       }
       resolve(res.data)
@@ -53,6 +53,10 @@ export const getTableConfig = (input) => {
           prop: 'action',
           t_label: 'adb.table.action',
           fixed: 'right' // boolean string
+        }, {
+          prop: 'priceValue',
+          label: 'slotPrice'
+          // fixed: true // boolean string
         }, {
           prop: 'orderNo',
           t_label: 'outboundOrder.table.orderNo'

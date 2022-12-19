@@ -1,3 +1,11 @@
+import xeUtils from 'xe-utils'
+/* // Decimal, UnitTranslate, weightUnits, weightUnitCodes...
+export * from './unit-translate.js' // 避免传递链过长 建议单独引用 */
+
+export {
+  xeUtils,
+  // unitTranslate
+}
 /**
  * 针对本地开发 console.log 添加颜色打印
  */
@@ -105,4 +113,39 @@ export function asyncHandlerLockWrap(syncFn) {
  */
 export function getDeepValue (obj, keyArr) {
   return keyArr.reduce((acc, key) => acc && acc[key], obj)
+}
+
+/**
+ * 转化成需要展示的时间格式
+ * @param date: string | Date | number
+ * @param format: string 格式化 默认：MM/dd/yyyy
+ *        format 输出日期格式(年份(yy|yyyy)、月份(M|MM自动补0)、天(d|dd自动补0)、12小时制(h|hh自动补0)、24小时制(H|HH自动补0)、分钟(m|mm自动补0)、秒(s|ss自动补0)、毫秒(S|SSS自动补0)、D当年的第几天、a/A上午下午、e/E星期几、w当年的第几周、W当月的第几周、q当年第几个季度、Z时区)
+ * @returns {string}
+ */
+// export function formatDateString (date, format = 'MM/dd/yyyy HH:mm:ss') {
+export function formatDateString (date, format = 'MM/dd/yyyy') {
+  if (!date) return '-'
+  return xeUtils.toDateString(date, format)
+}
+
+/**
+ * 转化成带逗号的number格式
+ * @param num
+ * @param minimumFractionDigits 保留小数位
+ * @returns {string}
+ */
+export function formatNumber (num, minimumFractionDigits = 0) {
+  // return xeUtils.commafy(+num, { digits: minimumFractionDigits }) || '-'
+  return (+num || 0).toLocaleString('zh', { minimumFractionDigits })
+}
+
+/**
+ * 百分比 保留两位小数  eg: 99.567% -> 99.57%
+ * @param rate 百分比数字/字符串
+ * @param hasPercent 是否添加%
+ * @returns {string}
+ */
+export function formatRate(rate, hasPercent = true) {
+  rate = rate ? rate.toString().replace('%', '') : '0'
+  return parseFloat(rate).toFixed(2) + (hasPercent ? '%' : '')
 }

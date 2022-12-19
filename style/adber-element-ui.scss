@@ -187,3 +187,10 @@
 .el-input__inner, .el-input .el-input__inner {
   border-radius: 6px;
 }
+
+// 文字提示
+.el-tooltip__popper {
+  max-width: 400px;
+  //max-width: 20%;
+  word-break: break-word;
+}

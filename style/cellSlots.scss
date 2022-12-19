@@ -1,0 +1,23 @@
+@import "variables.scss";
+
+// cellSlots 样式 公用 前缀
+.#{$prefix}cell {
+  // 文字大写
+  .text-uppercase {
+    text-transform: uppercase;
+  }
+  // label 类型
+  &-label {
+    color: $ad-color_4;
+  }
+  // 金额渲染样式
+  &_price {
+    //display: flex;
+    //justify-content: flex-end;
+    .price_label {
+      display: inline-block;
+      color: $ad-color_4;
+      margin-left: 4px;
+    }
+  }
+}

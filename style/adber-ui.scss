@@ -3,6 +3,7 @@
 
 /* --------adber-ui 组件内部样式 Start-------- */
 @import "adber/table.scss";
+@import "adber/vxe-table.scss";
 @import "adber/draggableNest.scss";
 @import "adber/formConfig.scss";
 @import "adber/icon.scss";
@@ -14,6 +15,9 @@
 @import "adber/dropdown.scss";
 
 /* --------adber-ui 组件内部样式 End-------- */
+
+// table Cell 内置默认渲染相关公用样式
+@import "cellSlots.scss";
 
 
 /* --------引用 adber-ui 根据ui/产品 用于项目的默认样式 Start-------- */
@@ -52,6 +56,15 @@
   }
 }
 
-.#{$prefix}test {}
+// 公用 触发 提示 的 tag(el-tag) 样式
+.#{$prefix}trigger-tag {
+  border: 0;
+  background: #f0f4f8;
+  height: 22px;
+  padding: 0 8px;
+  line-height: 22px;
+  //cursor: pointer;
+}
 
+.#{$prefix}test {}
 /* --------引用 adber-ui 根据ui/产品 用于项目的默认样式 End-------- */

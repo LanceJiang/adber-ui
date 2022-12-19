@@ -32,8 +32,11 @@ export const t = function(path, options) {
   for (let i = 0, j = array.length; i < j; i++) {
     const property = array[i]
     value = current[property]
-    if (i === j - 1) return format(value, options)
-    if (!value) return ''
+    if (i === j - 1) {
+      if (!value) return path
+      return format(value, options)
+    }
+    if (!value) return path
     current = value
   }
   return ''

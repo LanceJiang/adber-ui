@@ -233,6 +233,7 @@
       border: none;
       .title {
         width: max-content;
+        min-width: max-content;
         //min-width: 100px;
         //white-space: nowrap;
         //text-overflow: ellipsis;

@@ -1,7 +1,18 @@
 module.exports = {
   presets: [
     '@vue/app'
+  ],
+  // todo 验证 有 && 没有 打包差距
+  plugins: [
+    [
+      'import',
+      {
+        'libraryName': 'vxe-table'
+        // 'style': true // 样式是否也按需加载
+      }
+    ]
   ]
+
   // todo: 该文件中进行配置 babel ENV 无法执行 后续有空 再研究该问题（使用babelrc方案处理）
   /* 'env': {
     'utils': {

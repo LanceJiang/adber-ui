@@ -74,7 +74,8 @@ export default {
       }
     },
     table: {
-      action: '操作'
+      action: '操作',
+      hasChecked: '项已选'
     },
     validate: {
       validateEmptyTips: '{name}不能为空',

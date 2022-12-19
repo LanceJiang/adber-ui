@@ -1,11 +1,12 @@
 const path = require('path')
 
 module.exports = {
+  productionSourceMap: false,
   devServer: {
     port: 7777
   },
   css: {
-    sourceMap: true
+    sourceMap: process.env.NODE_ENV !== 'production'
   },
   pages: {
     index: {

@@ -55,7 +55,7 @@
     &.checkAll {
       //width: 100%;
       // 半选中
-      &.selected_indeterminate {
+      &.indeterminate {
         &::before {
           content: "\e80a";
           color: $ad-color-primary;

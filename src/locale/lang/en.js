@@ -74,7 +74,8 @@ export default {
       }
     },
     table: {
-      action: 'Action'
+      action: 'Action',
+      hasChecked: 'checked'
     },
     validate: {
       validateEmptyTips: '{name} is required',

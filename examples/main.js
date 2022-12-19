@@ -4,8 +4,6 @@ import router from './router'
 import store from './store'
 import i18n from './locales'
 
-import { $log } from '@adber/adber-ui/src/utils/index.js'
-
 // 导入组件库
 import AdberUI from './../packages'
 
@@ -33,7 +31,7 @@ Vue.use(AdberUI, {
 
 Vue.config.productionTip = false
 Vue.config.lang = 'en'
-Vue.prototype.$log = $log
+
 window.vue = Vue
 new Vue({
   router,

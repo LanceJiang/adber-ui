@@ -118,12 +118,10 @@
         ref="popper"
         :append-to-body="popperAppendToBody"
         v-show="localVisible">
-        <!--        <el-checkbox-->
-        <!--        , indeterminate ? 'selected_indeterminate' : ''-->
         <div
           v-if="multiple"
           v-show='computedOptions.length'
-          :class="['el-select-dropdown__item checkAll', isAll ? 'selected' : '']"
+          :class="['el-select-dropdown__item checkAll', isAll ? 'selected' : indeterminateClass]"
           @click="checkAllHandler">
           {{ t('adb.selectAll') }}
         </div>
@@ -272,21 +270,19 @@ export default {
       return this.visible && this.emptyText !== false
     },
     // 是否全选
-    isAll() {
-      // this.selected
+    isAll () {
       const { options, computedOptions, value } = this
       const showVals = computedOptions.map(v => v.value)
+      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+      this.indeterminateClass = ''
       if (!Array.isArray(value)) return false
-      // indeterminate
-      return options.length > 0 && value.length > 0 && showVals.every(v => value.includes(v))
-      // if (options.length > 0 && value.length > 0) {
-      //   const bool = showVals.every(v => value.includes(v))
-      //   // // eslint-disable-next-line
-      //   // // @ts-ignore
-      //   // this.indeterminate = true
-      //   if (!bool) return 'selected_indeterminate'
-      //   return bool
-      // }
+      // return options.length > 0 && value.length > 0 && showVals.every(v => value.includes(v))
+      if (options.length > 0 && value.length > 0) {
+        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+        if (showVals.some(v => value.includes(v))) this.indeterminateClass = 'indeterminate'
+        return showVals.every(v => value.includes(v))
+      }
+      return false
     },
     // 页面展示数据（options是所有数据）
     computedOptions() {
@@ -407,7 +403,7 @@ export default {
       menuVisibleOnFocus: false,
       isOnComposition: false,
       isSilentBlur: false,
-      indeterminate: false
+      indeterminateClass: '' // 'indeterminate' || ''
     }
   },
 
